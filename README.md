@@ -50,7 +50,7 @@ The purpose of this project is to showcase a throttling functionality for an exp
 The server initiates a Kafka Consumer and Producer as soon as it begins executing.
 
 ### Bombard your server
-Start by bombarding your server at the root URL endpoint (`/`) with HTTP POST requests by executing `make bombard_server`. This will execute a script that will send 100 requests that contain a JSON body with content `{"number": NUMBER_OF_REQUEST}`.
+Start by bombarding your server at the root URL endpoint (`/`) with HTTP POST requests by executing `make bombard_server`. This will execute a script that will send 100 requests that contain a JSON body with content `{"number": NUMBER_OF_REQUEST}`. The called endpoint will return an HTTP OK to a user after posting a JSON message but at the same time it will forward this message asynchronously to a Kafka topic.
 
 ### Throttling
-A Kafka polling goroutine also begins executing periodically as soon as the server initiates. It uses the previously initialised Kafka Consumer for polling new messages existing the topic we posted above. It fetches them and prints them out in the order they were received from your previous bombardment and at a rate of 5 messages per second.
+A Kafka polling goroutine also begins executing periodically as soon as the server initiates. It uses the previously initialised Kafka Consumer for polling new messages existing in the topic that was used above. It fetches them and prints them out in the order they were received from your previous bombardment and at a rate of 5 messages per second.

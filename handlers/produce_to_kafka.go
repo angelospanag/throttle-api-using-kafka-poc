@@ -10,7 +10,8 @@ import (
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
-// ProduceToKafka is an endpoint that returns an HTTP OK status a
+// ProduceToKafka returns an HTTP OK to a user after posting a JSON message and
+// forwards it asynchronously in an Apache Kafka topic
 func ProduceToKafka(w http.ResponseWriter, r *http.Request) {
 
 	var err error
