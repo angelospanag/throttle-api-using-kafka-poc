@@ -14,11 +14,11 @@ import (
 func main() {
 
 	// Throttled Kafka topic name - store it in App Context
-	// TODO: make the topic name a variable coming from an .env file
+	// TODO: make the topic name a variable coming from a .toml file
 	appcontext.AppContext.TopicName = "throttled_topic"
 
 	// Kafka Producer - store it in App Context
-	// TODO: make the kafka instance URL a variable coming from an .env file
+	// TODO: make the kafka instance URL a variable coming from a .toml file
 	p, err := kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": "localhost:9092"})
 	if err != nil {
 		panic(err)
@@ -26,7 +26,7 @@ func main() {
 	appcontext.AppContext.KafkaProducer = p
 
 	// Kafka Consumer - store it in App Context
-	// TODO: make the kafka instance URL a variable coming from an .env file
+	// TODO: make the kafka instance URL a variable coming from a .toml file
 	c, err := kafka.NewConsumer(&kafka.ConfigMap{
 		"bootstrap.servers": "localhost:9092",
 		"group.id":          "myGroup",

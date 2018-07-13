@@ -7,7 +7,8 @@ import (
 )
 
 // ConsumeFromKafka consumes a specific number of messages from Kafka
-// TODO: make the number of messages value coming from an .env file
+// TODO: make the number of messages value coming from a .toml file
+// TODO: offsets so that the Kafka Consumer knows where to start processing stored requests if the server ever stops/crashes
 func ConsumeFromKafka() {
 
 	//appcontext.AppContext.KafkaConsumer.Seek(*appcontext.AppContext.TopicPartition, 0)
