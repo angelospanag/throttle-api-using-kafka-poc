@@ -46,7 +46,7 @@ Port used: `8080`
 
 The purpose of this project is to showcase a throttling functionality for an exposed API endpoint. After initiating the project server and having a Kafka instance running you can try it yourself.
 
-# Kafka Consumer and Producer
+### Kafka Consumer and Producer
 The server initiates a Kafka Consumer and Producer as soon as it begins executing.
 
 ### Bombard your server
