@@ -4,9 +4,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/angelospanag/throttler-api-poc/consumer"
-	appcontext "github.com/angelospanag/throttler-api-poc/context"
-	"github.com/angelospanag/throttler-api-poc/handlers"
+	"github.com/angelospanag/throttle-api-using-kafka-poc/consumer"
+	appcontext "github.com/angelospanag/throttle-api-using-kafka-poc/context"
+	"github.com/angelospanag/throttle-api-using-kafka-poc/handlers"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 	"github.com/gorilla/mux"
 )

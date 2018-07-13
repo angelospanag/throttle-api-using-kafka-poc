@@ -3,7 +3,7 @@ package consumer
 import (
 	"fmt"
 
-	appcontext "github.com/angelospanag/throttler-api-poc/context"
+	appcontext "github.com/angelospanag/throttle-api-using-kafka-poc/context"
 )
 
 // ConsumeFromKafka consumes a specific number of messages from Kafka

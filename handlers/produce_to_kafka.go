@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	appcontext "github.com/angelospanag/throttler-api-poc/context"
+	appcontext "github.com/angelospanag/throttle-api-using-kafka-poc/context"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
