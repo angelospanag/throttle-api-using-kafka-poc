@@ -1,0 +1,7 @@
+[kafka]
+servers = ['localhost:9092']
+topic = 'throttled_topic'
+
+[consumption]
+number_of_messages = 5
+time_period_seconds = 5

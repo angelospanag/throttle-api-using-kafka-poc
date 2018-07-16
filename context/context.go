@@ -7,7 +7,6 @@ var AppContext Env
 
 // Env defines the stucture of the application context.
 type Env struct {
-	TopicName      string
 	KafkaProducer  *kafka.Producer
 	KafkaConsumer  *kafka.Consumer
 	TopicPartition *kafka.TopicPartition

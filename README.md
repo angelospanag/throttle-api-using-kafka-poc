@@ -3,12 +3,6 @@
 A proof of concept for throttling an API endpoint using Kafka and Go.
 
 ## !Main TODOs!
-
-* Use .toml file for specifying the following variables:
-    * Kafka instance URL
-    * Topic Name (?)
-    * Number of messages consumed for each time period
-    * The actual time period (duh)
   
 * Use offsets so that the Kafka Consumer knows where to start processing stored requests if the server ever stops/crashes.
 
@@ -34,6 +28,19 @@ brew services start kafka
 ```
 go get -u -v github.com/angelospanag/throttle-api-using-kafka-poc
 dep ensure -v
+```
+
+## Configuration
+
+Place a config.toml file with the following content at the root of the project:
+```toml
+[kafka]
+servers = ['localhost:9092']
+topic = 'throttled_topic'
+
+[consumption]
+number_of_messages = 5
+time_period_seconds = 5
 ```
 
 ## Running

@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 
+	appconfig "github.com/angelospanag/throttle-api-using-kafka-poc/config"
 	appcontext "github.com/angelospanag/throttle-api-using-kafka-poc/context"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
@@ -39,7 +40,7 @@ func ProduceToKafka(w http.ResponseWriter, r *http.Request) {
 	go func() {
 
 		appcontext.AppContext.KafkaProducer.Produce(&kafka.Message{
-			TopicPartition: kafka.TopicPartition{Topic: &appcontext.AppContext.TopicName, Partition: kafka.PartitionAny},
+			TopicPartition: kafka.TopicPartition{Topic: &appconfig.AppConfig.KafkaConfig.Topic, Partition: kafka.PartitionAny},
 			Value:          b,
 		}, nil)
 	}()

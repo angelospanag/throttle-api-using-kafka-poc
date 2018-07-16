@@ -1,9 +1,12 @@
 package main
 
 import (
+	"log"
 	"net/http"
+	"strings"
 	"time"
 
+	appconfig "github.com/angelospanag/throttle-api-using-kafka-poc/config"
 	"github.com/angelospanag/throttle-api-using-kafka-poc/consumer"
 	appcontext "github.com/angelospanag/throttle-api-using-kafka-poc/context"
 	"github.com/angelospanag/throttle-api-using-kafka-poc/handlers"
@@ -13,13 +16,15 @@ import (
 
 func main() {
 
-	// Throttled Kafka topic name - store it in App Context
-	// TODO: make the topic name a variable coming from a .toml file
-	appcontext.AppContext.TopicName = "throttled_topic"
+	var err error
+
+	err = appconfig.InitiateConfig()
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	// Kafka Producer - store it in App Context
-	// TODO: make the kafka instance URL a variable coming from a .toml file
-	p, err := kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": "localhost:9092"})
+	p, err := kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": strings.Join(appconfig.AppConfig.KafkaConfig.Servers, ", ")})
 	if err != nil {
 		panic(err)
 	}
@@ -35,11 +40,11 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	c.SubscribeTopics([]string{appcontext.AppContext.TopicName}, nil)
+	c.SubscribeTopics([]string{appconfig.AppConfig.KafkaConfig.Topic}, nil)
 	appcontext.AppContext.KafkaConsumer = c
 
-	// Ticker for consuming from Kafka every 5 seconds
-	ticker := time.NewTicker(5 * time.Second)
+	// Ticker for consuming from Kafka every x seconds
+	ticker := time.NewTicker(time.Duration(appconfig.AppConfig.ConsumptionConfig.TimePeriodSeconds) * time.Second)
 	quit := make(chan struct{})
 
 	go func() {
