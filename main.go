@@ -11,7 +11,7 @@ import (
 	appcontext "github.com/angelospanag/throttle-api-using-kafka-poc/context"
 	"github.com/angelospanag/throttle-api-using-kafka-poc/handlers"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
-	"github.com/gorilla/mux"
+	"github.com/julienschmidt/httprouter"
 )
 
 func main() {
@@ -31,9 +31,8 @@ func main() {
 	appcontext.AppContext.KafkaProducer = p
 
 	// Kafka Consumer - store it in App Context
-	// TODO: make the kafka instance URL a variable coming from a .toml file
 	c, err := kafka.NewConsumer(&kafka.ConfigMap{
-		"bootstrap.servers": "localhost:9092",
+		"bootstrap.servers": strings.Join(appconfig.AppConfig.KafkaConfig.Servers, ", "),
 		"group.id":          "myGroup",
 		"auto.offset.reset": "earliest",
 	})
@@ -59,7 +58,7 @@ func main() {
 		}
 	}()
 
-	r := mux.NewRouter()
-	r.HandleFunc("/", handlers.ProduceToKafka).Methods("POST")
-	http.ListenAndServe(":8080", r)
+	router := httprouter.New()
+	router.POST("/", handlers.ProduceToKafka)
+	log.Fatal(http.ListenAndServe(":8080", router))
 }

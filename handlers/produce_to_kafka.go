@@ -9,11 +9,12 @@ import (
 	appconfig "github.com/angelospanag/throttle-api-using-kafka-poc/config"
 	appcontext "github.com/angelospanag/throttle-api-using-kafka-poc/context"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
+	"github.com/julienschmidt/httprouter"
 )
 
 // ProduceToKafka returns an HTTP OK to a user after posting a JSON message and
-// forwards it asynchronously in an Apache Kafka topic
-func ProduceToKafka(w http.ResponseWriter, r *http.Request) {
+// forwards it asynchronously to an Apache Kafka topic
+func ProduceToKafka(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 	var err error
 	b, err := ioutil.ReadAll(r.Body)
@@ -38,7 +39,6 @@ func ProduceToKafka(w http.ResponseWriter, r *http.Request) {
 
 	// Produce messages to topic (asynchronously)
 	go func() {
-
 		appcontext.AppContext.KafkaProducer.Produce(&kafka.Message{
 			TopicPartition: kafka.TopicPartition{Topic: &appconfig.AppConfig.KafkaConfig.Topic, Partition: kafka.PartitionAny},
 			Value:          b,

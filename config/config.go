@@ -21,8 +21,7 @@ type KafkaConfig struct {
 	Topic   string
 }
 
-// ConsumptionConfig contains all the configuration details of for message consumption
-// from a Kafka Topic.
+// ConsumptionConfig contains all the configuration details for message consumption from a Kafka Topic.
 type ConsumptionConfig struct {
 	NumberOfMessages  int
 	TimePeriodSeconds int
