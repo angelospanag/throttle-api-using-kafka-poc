@@ -5,8 +5,8 @@ A proof of concept for throttling an API endpoint using Kafka and Go.
 - [throttle-api-using-kafka-poc](#throttle-api-using-kafka-poc)
   - [!Main TODOs!](#main-todos)
   - [Prerequisites](#prerequisites)
-    - [Quick install for MacOS\*\*](#quick-install-for-macos)
-    - [Start Apache Kafka (using MacOS and `brew`)\*\*](#start-apache-kafka-using-macos-and-brew)
+    - [Quick install for MacOS](#quick-install-for-macos)
+    - [Start Apache Kafka (using MacOS and `brew`)](#start-apache-kafka-using-macos-and-brew)
   - [Installation](#installation)
   - [Configuration](#configuration)
   - [Running](#running)
@@ -25,13 +25,13 @@ A proof of concept for throttling an API endpoint using Kafka and Go.
 - [Go 1.24.\*](https://golang.org/)
 - [Apache Kafka](https://kafka.apache.org/)
 
-### Quick install for MacOS\*\*
+### Quick install for MacOS
 
 ```bash
 brew install go kafka
 ```
 
-### Start Apache Kafka (using MacOS and `brew`)\*\*
+### Start Apache Kafka (using MacOS and `brew`)
 
 ```bash
 brew services start zookeeper
