@@ -60,5 +60,5 @@ func main() {
 
 	router := httprouter.New()
 	router.POST("/", handlers.ProduceToKafka)
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8000", router))
 }
