@@ -28,7 +28,7 @@ A proof of concept for throttling an API endpoint using Kafka and Go.
 ### Quick install for MacOS
 
 ```bash
-brew install go kafka
+brew install go@1.24 kafka
 ```
 
 ### Start Apache Kafka (using MacOS and `brew`)
