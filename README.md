@@ -34,7 +34,6 @@ brew install go@1.24 kafka
 ### Start Apache Kafka (using MacOS and `brew`)
 
 ```bash
-brew services start zookeeper
 brew services start kafka
 ```
 
